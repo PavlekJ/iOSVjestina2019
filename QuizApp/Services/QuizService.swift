@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class QuizService {
     static let shared = QuizService()
@@ -36,5 +37,29 @@ class QuizService {
             }
         }
         task.resume()
+    }
+    
+    
+    
+    func fetchQuizImage(imageUrl: String?, completion: @escaping ((UIImage?) -> Void)){
+        guard let imageUrlString = imageUrl else {
+            completion(nil)
+            return
+        }
+        if let url = URL(string: imageUrlString) {
+            
+            let request = URLRequest(url: url)
+            let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    let image = UIImage(data: data)
+                    completion(image)
+                } else {
+                    completion(nil)
+                }
+            }
+            dataTask.resume()
+        } else {
+            completion(nil)
+        }
     }
 }

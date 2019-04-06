@@ -72,6 +72,7 @@ class QuizViewController: UIViewController {
                 self.quizView.loadButton.isHidden = true
                 self.quizView.funFactButton.isHidden = false
                 self.addQuizzes(quizzes: quizzes)
+                self.quizView.errorLabel.isHidden = true
             }
         }
     }
@@ -80,13 +81,27 @@ class QuizViewController: UIViewController {
         let customQuizView = CustomQuizView()
         
         let randomInt = Int.random(in: 0..<quizzes.quizzes.count)
-
+        
+        let imageUrl = quizzes.quizzes[randomInt].image
+        
+        QuizService.shared.fetchQuizImage(imageUrl: imageUrl){ (image) in
+            if image != nil {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5) {
+                customQuizView.quizImageView.image = image
+                }
+                }
+            }
+        }
+        
+        
         
         customQuizView.titleLabel.text = quizzes.quizzes[randomInt].title
         customQuizView.categoryLabel.text = quizzes.quizzes[randomInt].category
         customQuizView.descriptionLabel.text = quizzes.quizzes[randomInt].description
         customQuizView.levelLabel.text = "Level: \(quizzes.quizzes[randomInt].level)"
         customQuizView.categoryLabel.backgroundColor = quizzes.quizzes[randomInt].categoryColor()
+        customQuizView.categoryLabel.layer.borderColor = quizzes.quizzes[randomInt].categoryColor().cgColor
         
         customQuizView.layer.shadowColor = UIColor.black.cgColor
         customQuizView.layer.shadowOffset = CGSize(width: 5, height: 5)
@@ -180,11 +195,11 @@ class QuizViewController: UIViewController {
     func answerButtonTap(_ sender: UIButton){
         if sender.tag == self.question?.correct_answer {
             
-            UIView.animate(withDuration: 0.5){
+            UIView.animate(withDuration: 0.8){
                 sender.backgroundColor = UIColor.green
             }
         } else {
-            UIView.animate(withDuration: 0.5){
+            UIView.animate(withDuration: 0.8){
                 sender.backgroundColor = UIColor.red
             }
         }

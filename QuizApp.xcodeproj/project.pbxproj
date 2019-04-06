@@ -21,7 +21,7 @@
 		7747D0AF2255048900258838 /* Quizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0AE2255048900258838 /* Quizzes.swift */; };
 		7747D0B12255124100258838 /* CustomQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0B02255124100258838 /* CustomQuizView.swift */; };
 		775859072255437B0062B380 /* CustomQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775859062255437B0062B380 /* CustomQuestionView.swift */; };
-		77C18C162257DF2C00B72CF0 /* CategoryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C18C152257DF2C00B72CF0 /* CategoryColor.swift */; };
+		77C18C1822581A1500B72CF0 /* quizDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C18C1722581A1500B72CF0 /* quizDefault.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,7 @@
 		7747D0AE2255048900258838 /* Quizzes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quizzes.swift; sourceTree = "<group>"; };
 		7747D0B02255124100258838 /* CustomQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomQuizView.swift; sourceTree = "<group>"; };
 		775859062255437B0062B380 /* CustomQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomQuestionView.swift; sourceTree = "<group>"; };
-		77C18C152257DF2C00B72CF0 /* CategoryColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryColor.swift; sourceTree = "<group>"; };
+		77C18C1722581A1500B72CF0 /* quizDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = quizDefault.png; path = ../../../Documents/quizDefault.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,6 @@
 		7747D06B2254084600258838 /* QuizApp */ = {
 			isa = PBXGroup;
 			children = (
-				77C18C142257DF0500B72CF0 /* Enums */,
 				7747D0A422541BD900258838 /* LaunchScreen.storyboard */,
 				7747D09D22540A8700258838 /* Services */,
 				7747D09C22540A7900258838 /* Controllers */,
@@ -122,6 +121,7 @@
 				7747D09A22540A4900258838 /* Models */,
 				7747D06C2254084600258838 /* AppDelegate.swift */,
 				7747D0732254084700258838 /* Assets.xcassets */,
+				77C18C1722581A1500B72CF0 /* quizDefault.png */,
 				7747D0782254084700258838 /* Info.plist */,
 			);
 			path = QuizApp;
@@ -179,14 +179,6 @@
 				7747D0A6225429B000258838 /* QuizService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		77C18C142257DF0500B72CF0 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				77C18C152257DF2C00B72CF0 /* CategoryColor.swift */,
-			);
-			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C18C1822581A1500B72CF0 /* quizDefault.png in Resources */,
 				7747D0A522541BD900258838 /* LaunchScreen.storyboard in Resources */,
 				7747D0742254084700258838 /* Assets.xcassets in Resources */,
 				7747D0AD225501ED00258838 /* Default-568h@2x.png in Resources */,
@@ -323,7 +316,6 @@
 				7747D09F22540C1E00258838 /* QuizViewController.swift in Sources */,
 				7747D0A92254B7FD00258838 /* Quiz.swift in Sources */,
 				7747D0AF2255048900258838 /* Quizzes.swift in Sources */,
-				77C18C162257DF2C00B72CF0 /* CategoryColor.swift in Sources */,
 				7747D06D2254084600258838 /* AppDelegate.swift in Sources */,
 				7747D0AB2254B93600258838 /* Question.swift in Sources */,
 				7747D0A7225429B000258838 /* QuizService.swift in Sources */,

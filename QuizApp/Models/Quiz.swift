@@ -31,9 +31,9 @@ struct Quiz{
     func categoryColor () -> UIColor {
         switch self.category {
         case "SPORTS":
-            return UIColor(red:0.1, green:0.1, blue:0.54, alpha:1.0)
+            return UIColor(red:0.1, green:0.54, blue:0.1, alpha:1.0)
         case "SCIENCE":
-            return UIColor(red:0.54, green:0.1, blue:0.1, alpha:1.0)
+            return UIColor(red:0.1, green:0.1, blue:0.54, alpha:1.0)
         default:
             return UIColor.black
         }

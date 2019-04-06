@@ -12,6 +12,7 @@ import UIKit
 
 class CustomQuizView: UIView{
     
+    let quizImageView = UIImageView()
     let titleLabel = UILabel()
     let categoryLabel = UILabel()
     let levelLabel = UILabel()
@@ -33,6 +34,8 @@ class CustomQuizView: UIView{
     }
     
     func addSubviews(){
+        
+        self.addSubview(quizImageView)
         self.addSubview(categoryLabel)
         self.addSubview(levelLabel)
         self.addSubview(descriptionLabel)
@@ -40,8 +43,15 @@ class CustomQuizView: UIView{
     }
     
     func styleSubviews(){
-        categoryLabel.textColor = .black
+        
+        quizImageView.image = UIImage(named: "quizDefault.png")
+        quizImageView.clipsToBounds = true;
+        quizImageView.contentMode = .scaleAspectFill;
+        
+        categoryLabel.textColor = .white
         categoryLabel.font = UIFont.systemFont(ofSize: 10)
+        
+        
 
         titleLabel.textColor = .black
         titleLabel.font = UIFont.systemFont(ofSize: 18)
@@ -56,9 +66,19 @@ class CustomQuizView: UIView{
     
     func positionSubviews(){
         
+        quizImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            quizImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            quizImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),
+            quizImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            quizImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            ])
+        
+        
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -80),
+            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
             titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             ])
         
