@@ -79,7 +79,7 @@ class QuizView: UIView {
             loadButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
             loadButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             loadButton.heightAnchor.constraint(equalToConstant: 45),
-            loadButton.widthAnchor.constraint(equalToConstant: 300)
+            loadButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85)
             ])
 
         
@@ -90,14 +90,14 @@ class QuizView: UIView {
             funFactButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
             funFactButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             funFactButton.heightAnchor.constraint(equalToConstant: 45),
-            funFactButton.widthAnchor.constraint(equalToConstant: 300)
+            funFactButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85)
             ])
         
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             errorLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             errorLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            errorLabel.widthAnchor.constraint(equalToConstant: 300)
+            errorLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8)
             ])
         
         

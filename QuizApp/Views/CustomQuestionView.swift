@@ -61,7 +61,7 @@ class CustomQuestionView : UIView{
         
         answerButtons.forEach{ button in
             button.backgroundColor = UIColor(red:0.66, green:0.66, blue:0.66, alpha:1.0)
-            button.layer.cornerRadius = 15
+            button.layer.cornerRadius = 20
             button.setTitleColor(.white, for: .normal)
         }
         

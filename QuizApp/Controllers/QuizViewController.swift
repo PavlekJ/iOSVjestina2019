@@ -12,7 +12,17 @@ import UIKit
 class QuizViewController: UIViewController {
     
     let quizView = QuizView()
+    var quizzes: Quizzes? = nil
     var question: Question? = nil
+    var customQuestionView = CustomQuestionView()
+    var quizId: Int? = nil
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+            
+        }
+    }
     
     override func loadView() {
         self.view = QuizView(frame: UIScreen.main.bounds)
@@ -61,6 +71,8 @@ class QuizViewController: UIViewController {
                 }
                 return
             }
+            self.quizzes = quizzes
+            
             DispatchQueue.main.async {
                 let numNBAMentioned = quizzes.quizzes.map{ (quiz:Quiz) -> [Question] in
                     return quiz.questions.filter { (question) -> Bool in
@@ -81,16 +93,19 @@ class QuizViewController: UIViewController {
         let customQuizView = CustomQuizView()
         
         let randomInt = Int.random(in: 0..<quizzes.quizzes.count)
-        
+        self.quizId = randomInt
         let imageUrl = quizzes.quizzes[randomInt].image
         
         QuizService.shared.fetchQuizImage(imageUrl: imageUrl){ (image) in
             if image != nil {
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.5) {
                 customQuizView.quizImageView.image = image
                 }
+            } else {
+                DispatchQueue.main.async {
+                    customQuizView.quizImageView.image = UIImage(named: "quizDefault.png")
                 }
+
             }
         }
         
@@ -107,7 +122,7 @@ class QuizViewController: UIViewController {
         customQuizView.layer.shadowOffset = CGSize(width: 5, height: 5)
         customQuizView.layer.shadowRadius = 5
         customQuizView.layer.shadowOpacity = 0.2
-        customQuizView.layer.cornerRadius = 5
+        customQuizView.layer.cornerRadius = 10
         customQuizView.backgroundColor = .white
         
         customQuizView.alpha = 0.0
@@ -118,6 +133,7 @@ class QuizViewController: UIViewController {
         self.question = question
         let customQuestionView = CustomQuestionView()
         
+        self.customQuestionView = customQuestionView
         customQuestionView.questionLabel.text = question.question
         customQuestionView.answerButton1.setTitle(question.answers[0], for: .normal)
         customQuestionView.answerButton2.setTitle(question.answers[1], for: .normal)
@@ -130,7 +146,7 @@ class QuizViewController: UIViewController {
         customQuestionView.layer.shadowOffset = CGSize(width: 5, height: 5)
         customQuestionView.layer.shadowRadius = 5
         customQuestionView.layer.shadowOpacity = 0.2
-        customQuestionView.layer.cornerRadius = 5
+        customQuestionView.layer.cornerRadius = 10
         customQuestionView.backgroundColor = .white
         customQuestionView.alpha = 0.0
         
@@ -149,7 +165,7 @@ class QuizViewController: UIViewController {
         
         customQuestionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            customQuestionView.widthAnchor.constraint(equalToConstant: 300),
+            customQuestionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.85),
             customQuestionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             customQuestionView.heightAnchor.constraint(equalToConstant: 280)
             ])
@@ -163,7 +179,7 @@ class QuizViewController: UIViewController {
         
         customQuizView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            customQuizView.widthAnchor.constraint(equalToConstant: 300),
+            customQuizView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.85),
             customQuizView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             customQuizView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 110)
             ])
@@ -193,6 +209,11 @@ class QuizViewController: UIViewController {
     
     @objc
     func answerButtonTap(_ sender: UIButton){
+        
+        self.customQuestionView.answerButtons.forEach{ button in
+            button.isEnabled = false
+        }
+        
         if sender.tag == self.question?.correct_answer {
             
             UIView.animate(withDuration: 0.8){
@@ -204,6 +225,29 @@ class QuizViewController: UIViewController {
             }
         }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            self.changeQuestion()
+        }
+        
+        
+    }
+    
+    @objc
+    func changeQuestion(){
+        let randomQuestionInt = Int.random(in: 0..<self.quizzes!.quizzes[self.quizId!].questions.count)
+        let question = self.quizzes?.quizzes[self.quizId!].questions[randomQuestionInt]
+        self.question = question
+        
+        self.customQuestionView.questionLabel.text = question?.question
+        self.customQuestionView.answerButton1.setTitle(question?.answers[0], for: .normal)
+        self.customQuestionView.answerButton2.setTitle(question?.answers[1], for: .normal)
+        self.customQuestionView.answerButton3.setTitle(question?.answers[2], for: .normal)
+        self.customQuestionView.answerButton4.setTitle(question?.answers[3], for: .normal)
+        
+        self.customQuestionView.answerButtons.forEach{ button in
+            button.isEnabled = true
+            button.backgroundColor = UIColor(red:0.66, green:0.66, blue:0.66, alpha:1.0)
+        }
         
     }
     

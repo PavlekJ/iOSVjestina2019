@@ -44,9 +44,9 @@ class CustomQuizView: UIView{
     
     func styleSubviews(){
         
-        quizImageView.image = UIImage(named: "quizDefault.png")
         quizImageView.clipsToBounds = true;
         quizImageView.contentMode = .scaleAspectFill;
+        quizImageView.layer.cornerRadius = 10
         
         categoryLabel.textColor = .white
         categoryLabel.font = UIFont.systemFont(ofSize: 10)
