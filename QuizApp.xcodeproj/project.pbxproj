@@ -22,6 +22,8 @@
 		7747D0B12255124100258838 /* CustomQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0B02255124100258838 /* CustomQuizView.swift */; };
 		775859072255437B0062B380 /* CustomQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775859062255437B0062B380 /* CustomQuestionView.swift */; };
 		77C18C1822581A1500B72CF0 /* quizDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C18C1722581A1500B72CF0 /* quizDefault.png */; };
+		77C18C1A225BC39200B72CF0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C18C19225BC39200B72CF0 /* LoginView.swift */; };
+		77C18C1C225BC65800B72CF0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C18C1B225BC65800B72CF0 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		7747D0B02255124100258838 /* CustomQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomQuizView.swift; sourceTree = "<group>"; };
 		775859062255437B0062B380 /* CustomQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomQuestionView.swift; sourceTree = "<group>"; };
 		77C18C1722581A1500B72CF0 /* quizDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = quizDefault.png; path = ../../../Documents/quizDefault.png; sourceTree = "<group>"; };
+		77C18C19225BC39200B72CF0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		77C18C1B225BC65800B72CF0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				7747D0A022540DCB00258838 /* QuizView.swift */,
+				77C18C19225BC39200B72CF0 /* LoginView.swift */,
 				7747D0B02255124100258838 /* CustomQuizView.swift */,
 				775859062255437B0062B380 /* CustomQuestionView.swift */,
 			);
@@ -169,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				7747D09E22540C1E00258838 /* QuizViewController.swift */,
+				77C18C1B225BC65800B72CF0 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -321,7 +327,9 @@
 				7747D0A7225429B000258838 /* QuizService.swift in Sources */,
 				775859072255437B0062B380 /* CustomQuestionView.swift in Sources */,
 				7747D0B12255124100258838 /* CustomQuizView.swift in Sources */,
+				77C18C1A225BC39200B72CF0 /* LoginView.swift in Sources */,
 				7747D0A122540DCB00258838 /* QuizView.swift in Sources */,
+				77C18C1C225BC65800B72CF0 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

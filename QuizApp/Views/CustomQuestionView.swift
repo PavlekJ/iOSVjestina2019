@@ -50,9 +50,7 @@ class CustomQuestionView : UIView{
         answerButtons.forEach{ button in
             self.addSubview(button)
         }
-    
     }
-    
     func styleSubviews(){
         
         questionLabel.textColor = .black
@@ -90,25 +88,6 @@ class CustomQuestionView : UIView{
                 button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 button.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: 0)
                 ])
-            
-            
-            
-            
-            
         }
-        
-        
-        
-        
-        
-        
-    
     }
-    
-    
-    
-    
-    
-    
-    
 }

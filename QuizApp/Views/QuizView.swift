@@ -100,9 +100,6 @@ class QuizView: UIView {
             errorLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8)
             ])
         
-        
-
-        
     }
     
 }

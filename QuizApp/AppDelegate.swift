@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let vc = QuizViewController()
+        let vc = LoginViewController()
         
         window?.rootViewController = vc
         

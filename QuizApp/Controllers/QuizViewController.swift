@@ -45,6 +45,9 @@ class QuizViewController: UIViewController {
         
         quizView.loadButton.addTarget(self, action: #selector(loadQuizzes), for: .touchUpInside)
         quizView.loadButton.addTarget(self, action: #selector(touchButton), for: .touchDown)
+        quizView.funFactButton.addTarget(self, action: #selector(LogOutAction), for: .touchUpInside)
+        quizView.funFactButton.addTarget(self, action: #selector(touchButton), for: .touchDown)
+
 
     
     }
@@ -249,6 +252,13 @@ class QuizViewController: UIViewController {
             button.backgroundColor = UIColor(red:0.66, green:0.66, blue:0.66, alpha:1.0)
         }
         
+    }
+    
+    @objc
+    func LogOutAction(_ sender: UIButton){
+        sender.backgroundColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
+        sender.layer.shadowOpacity = 0.2
+        self.dismiss(animated: true, completion: nil)
     }
     
     
