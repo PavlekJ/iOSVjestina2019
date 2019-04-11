@@ -29,6 +29,11 @@ class LoginViewController : UIViewController{
         
         self.view.addSubview(loginView)
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+        
+        
         loginView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loginView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -60,16 +65,37 @@ class LoginViewController : UIViewController{
         sender.backgroundColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
         sender.layer.shadowOpacity = 0.2
         
-        let quizViewController = QuizViewController()
-        self.present(quizViewController, animated: true, completion: nil)
+        guard let username = self.loginView.nameField.text else {
+            return
+        }
+        guard let password = self.loginView.passwordField.text else {
+            return
+        }
+        
+        LoginService.shared.fetchToken(username: username, password: password) {model in
+            guard let token = model else {
+                DispatchQueue.main.async {
+                    self.loginView.errorLabel.isHidden = false
+                }
+                return
+            }
+            UserDefaults.standard.set(token.token, forKey:"token")
+            DispatchQueue.main.async {
+                self.loginView.errorLabel.isHidden = true
+                let quizViewController = QuizViewController()
+                self.dismiss(animated: true, completion: nil)
+                self.present(quizViewController, animated: true, completion: nil)
+                
+            }
+            
+        }
+        
+        
+        
     }
     
-
-        
-        
-    
-    
-    
-    
-    
+    @objc
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

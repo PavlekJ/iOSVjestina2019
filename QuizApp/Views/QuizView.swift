@@ -47,7 +47,7 @@ class QuizView: UIView {
         loadButton.layer.shadowOffset = CGSize(width: 5, height: 5)
         loadButton.layer.shadowRadius = 5
         loadButton.layer.shadowOpacity = 0.2
-        loadButton.layer.cornerRadius = 5
+        loadButton.layer.cornerRadius = 10
         loadButton.isEnabled = true
         
         funFactButton.backgroundColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
@@ -57,7 +57,7 @@ class QuizView: UIView {
         funFactButton.layer.shadowOffset = CGSize(width: 5, height: 5)
         funFactButton.layer.shadowRadius = 5
         funFactButton.layer.shadowOpacity = 0.2
-        funFactButton.layer.cornerRadius = 5
+        funFactButton.layer.cornerRadius = 10
         funFactButton.isHidden = true
         
         errorLabel.textColor = .black

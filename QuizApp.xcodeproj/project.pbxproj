@@ -24,6 +24,8 @@
 		77C18C1822581A1500B72CF0 /* quizDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C18C1722581A1500B72CF0 /* quizDefault.png */; };
 		77C18C1A225BC39200B72CF0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C18C19225BC39200B72CF0 /* LoginView.swift */; };
 		77C18C1C225BC65800B72CF0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C18C1B225BC65800B72CF0 /* LoginViewController.swift */; };
+		77CC1F6B225F7EBA00959888 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CC1F6A225F7EBA00959888 /* LoginService.swift */; };
+		77CC1F6D225F8D7F00959888 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CC1F6C225F8D7F00959888 /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		77C18C1722581A1500B72CF0 /* quizDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = quizDefault.png; path = ../../../Documents/quizDefault.png; sourceTree = "<group>"; };
 		77C18C19225BC39200B72CF0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		77C18C1B225BC65800B72CF0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		77CC1F6A225F7EBA00959888 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		77CC1F6C225F8D7F00959888 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				7747D0A82254B7FD00258838 /* Quiz.swift */,
+				77CC1F6C225F8D7F00959888 /* Token.swift */,
 				7747D0AA2254B93600258838 /* Question.swift */,
 				7747D0AE2255048900258838 /* Quizzes.swift */,
 			);
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				7747D0A6225429B000258838 /* QuizService.swift */,
+				77CC1F6A225F7EBA00959888 /* LoginService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -326,9 +332,11 @@
 				7747D0AB2254B93600258838 /* Question.swift in Sources */,
 				7747D0A7225429B000258838 /* QuizService.swift in Sources */,
 				775859072255437B0062B380 /* CustomQuestionView.swift in Sources */,
+				77CC1F6B225F7EBA00959888 /* LoginService.swift in Sources */,
 				7747D0B12255124100258838 /* CustomQuizView.swift in Sources */,
 				77C18C1A225BC39200B72CF0 /* LoginView.swift in Sources */,
 				7747D0A122540DCB00258838 /* QuizView.swift in Sources */,
+				77CC1F6D225F8D7F00959888 /* Token.swift in Sources */,
 				77C18C1C225BC65800B72CF0 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

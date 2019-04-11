@@ -14,6 +14,7 @@ class LoginView: UIView{
     let nameField = UITextField(frame: CGRect(x: 0, y: 0, width: 300.00, height: 30.00))
     let passwordField = UITextField(frame: CGRect(x: 0, y: 0, width: 300.00, height: 30.00))
     let loginButton = UIButton()
+    let errorLabel = UILabel()
     
     
     
@@ -36,6 +37,7 @@ class LoginView: UIView{
         self.addSubview(nameField)
         self.addSubview(passwordField)
         self.addSubview(loginButton)
+        self.addSubview(errorLabel)
     }
     
     func styleSubviews(){
@@ -43,16 +45,14 @@ class LoginView: UIView{
 
         
         nameField.placeholder = "Name"
-        nameField.layer.borderWidth = 1
-        nameField.layer.borderColor = UIColor.lightGray.cgColor
-        nameField.layer.cornerRadius = 5
+        nameField.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        nameField.layer.cornerRadius = 10
         nameField.setLeftPaddingPoints(10)
         
         
         passwordField.placeholder = "Password"
-        passwordField.layer.borderWidth = 1
-        passwordField.layer.borderColor = UIColor.lightGray.cgColor
-        passwordField.layer.cornerRadius = 5
+        passwordField.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        passwordField.layer.cornerRadius = 10
         passwordField.isSecureTextEntry = true
         passwordField.setLeftPaddingPoints(10)
         
@@ -64,7 +64,13 @@ class LoginView: UIView{
         loginButton.layer.shadowOffset = CGSize(width: 5, height: 5)
         loginButton.layer.shadowRadius = 5
         loginButton.layer.shadowOpacity = 0.2
-        loginButton.layer.cornerRadius = 5
+        loginButton.layer.cornerRadius = 10
+        
+        errorLabel.textColor = .black
+        errorLabel.text = "Username or password incorrect"
+        errorLabel.isHidden = true
+        errorLabel.numberOfLines = 0
+        errorLabel.lineBreakMode = .byWordWrapping
         
         
     }
@@ -96,6 +102,14 @@ class LoginView: UIView{
             loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 45),
             loginButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85)
+            ])
+        
+        
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 250),
+            errorLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            errorLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8)
             ])
         
         

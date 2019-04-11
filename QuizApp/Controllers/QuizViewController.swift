@@ -256,9 +256,18 @@ class QuizViewController: UIViewController {
     
     @objc
     func LogOutAction(_ sender: UIButton){
-        sender.backgroundColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
-        sender.layer.shadowOpacity = 0.2
-        self.dismiss(animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            sender.backgroundColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
+            sender.layer.shadowOpacity = 0.2
+            
+            let loginViewController = LoginViewController()
+            self.dismiss(animated: true, completion: nil)
+            self.present(loginViewController, animated: true, completion: nil)
+        }
+        
+        UserDefaults.standard.set(nil, forKey: "token")
+        
     }
     
     

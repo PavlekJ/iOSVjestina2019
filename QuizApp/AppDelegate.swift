@@ -19,12 +19,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let vc = LoginViewController()
         
-        window?.rootViewController = vc
+        if isUserLoggedIn() {
+            let vc = QuizViewController()
+            window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+            return true
+        } else {
+            let vc = LoginViewController()
+            window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+            return true
+        }
         
-        window?.makeKeyAndVisible()
-        return true
     }
+    
+    func isUserLoggedIn() -> Bool {
+        return !(UserDefaults.standard.object(forKey: "token") == nil)
+    }
+
 }
+
 
