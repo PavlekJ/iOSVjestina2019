@@ -14,6 +14,16 @@ struct Quizzes{
     enum CodingKeys: String, CodingKey{
         case quizzes
     }
+    
+    
+    
+    func categories() -> [String] {
+        let categories = quizzes.map{ quiz  in
+            return quiz.category
+        }
+        let uniqueCategories = Array(Set(categories))
+        return uniqueCategories
+    }
 }
 
 extension Quizzes: Decodable {

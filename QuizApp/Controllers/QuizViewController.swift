@@ -11,6 +11,7 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
+    
     let quizView = QuizView()
     var quizzes: Quizzes? = nil
     var question: Question? = nil
@@ -62,6 +63,9 @@ class QuizViewController: UIViewController {
         sender.backgroundColor = UIColor(red:0.75, green:0.38, blue:0.60, alpha:1.0)
         sender.layer.shadowOpacity = 0
     }
+    
+    
+
     
     @objc
     func loadQuizzes(){
@@ -231,6 +235,8 @@ class QuizViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1){
             self.changeQuestion()
         }
+        
+        
         
         
     }

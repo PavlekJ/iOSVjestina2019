@@ -12,6 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navigationController: UINavigationController?
+
 
 
 
@@ -20,17 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         
-        if isUserLoggedIn() {
-            let vc = QuizViewController()
-            window?.rootViewController = vc
-            window?.makeKeyAndVisible()
-            return true
-        } else {
-            let vc = LoginViewController()
-            window?.rootViewController = vc
-            window?.makeKeyAndVisible()
-            return true
+        UINavigationBar.appearance().tintColor = .black
+        
+        if let window = window {
+            if isUserLoggedIn() {
+                let mainVC = QuizTableViewController()
+                navigationController = UINavigationController(rootViewController: mainVC)
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            } else {
+                let mainVC = LoginViewController()
+                navigationController = UINavigationController(rootViewController: mainVC)
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            }
         }
+        
+        return true
         
     }
     

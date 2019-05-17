@@ -12,6 +12,7 @@ import UIKit
 
 
 class CustomQuestionView : UIView{
+    
     let questionLabel = UILabel()
     
     let answerButton1 = UIButton()
@@ -21,6 +22,15 @@ class CustomQuestionView : UIView{
     
     var answerButtons : [UIButton] = []
 
+    
+    func setup(with question: Question){
+        questionLabel.text = question.question
+        answerButton1.setTitle(question.answers[0], for: .normal)
+        answerButton2.setTitle(question.answers[1], for: .normal)
+        answerButton3.setTitle(question.answers[2], for: .normal)
+        answerButton4.setTitle(question.answers[3], for: .normal)
+
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,6 +63,8 @@ class CustomQuestionView : UIView{
     }
     func styleSubviews(){
         
+        self.backgroundColor = .red
+        
         questionLabel.textColor = .black
         questionLabel.numberOfLines = 0
         questionLabel.lineBreakMode = .byWordWrapping
@@ -79,15 +91,18 @@ class CustomQuestionView : UIView{
             questionLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             ])
         
-        
+        var bottom = -8
         answerButtons.forEach{ button in
             button.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 button.widthAnchor.constraint(equalToConstant: 270),
                 button.heightAnchor.constraint(equalToConstant: 40),
                 button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                button.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: 0)
+                button.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: CGFloat(bottom))
                 ])
+            bottom -= 48
+            
+            
         }
     }
 }

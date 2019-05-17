@@ -26,7 +26,7 @@ class LoginViewController : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Log in"
         self.view.addSubview(loginView)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
@@ -79,12 +79,12 @@ class LoginViewController : UIViewController{
                 }
                 return
             }
-            UserDefaults.standard.set(token.token, forKey:"token")
+            UserDefaults.standard.set(token.token, forKey: "token")
+            UserDefaults.standard.set(token.id, forKey: "id")
             DispatchQueue.main.async {
                 self.loginView.errorLabel.isHidden = true
-                let quizViewController = QuizViewController()
-                self.dismiss(animated: true, completion: nil)
-                self.present(quizViewController, animated: true, completion: nil)
+                let quizViewController = QuizTableViewController()
+                self.navigationController?.pushViewController(quizViewController, animated: true)
                 
             }
             
