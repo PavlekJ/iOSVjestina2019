@@ -14,22 +14,16 @@ class RankTableViewController: UIViewController {
     var quizId: Int? = nil
     
     private var ranks: [Rank]? = nil
-    private var results = ["Marko", "Ivan", "Ana", "Mislav", "Nikola", "Tomson", "Abdul", "Muhamad", "Anastazije", "Dinko", "Dinkalica"]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadRanks()
-        sleep(1)
         self.title = "Rank"
         self.setupView()
-
-            
         }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
+
     func setupView(){
         self.view.backgroundColor = .white
         self.view.addSubview(tableView)
@@ -70,14 +64,11 @@ class RankTableViewController: UIViewController {
                 return
             }
             self.ranks = ranks
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
-    
-    
-    
-    
-    
-    
 }
 
 extension RankTableViewController: UITableViewDataSource {
@@ -104,7 +95,7 @@ extension RankTableViewController: UITableViewDataSource {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 30)])
+            nameLabel.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 50)])
         
         let scoreLabel = UILabel()
         
@@ -116,6 +107,15 @@ extension RankTableViewController: UITableViewDataSource {
         NSLayoutConstraint.activate([
             scoreLabel.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
             scoreLabel.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -30)])
+        
+        
+        let rankLabel = UILabel()
+        cell.addSubview(rankLabel)
+        rankLabel.text = "\(indexPath.row+1)."
+        rankLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            rankLabel.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+            rankLabel.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 15)])
         return cell
     }
     
@@ -130,6 +130,42 @@ extension RankTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let sectionHeaderView = UIView()
+        sectionHeaderView.alpha = 1
+        let userLabel = UILabel()
+        let scoreLabel = UILabel()
+        sectionHeaderView.addSubview(userLabel)
+        sectionHeaderView.addSubview(scoreLabel)
+        userLabel.text = "User"
+        scoreLabel.text = "Score"
+        sectionHeaderView.backgroundColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
+        userLabel.textColor = .white
+        userLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            userLabel.leadingAnchor.constraint(equalTo: sectionHeaderView.leadingAnchor, constant: 50),
+            userLabel.centerYAnchor.constraint(equalTo: sectionHeaderView.centerYAnchor)
+            ])
+        scoreLabel.textColor = .white
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scoreLabel.trailingAnchor.constraint(equalTo: sectionHeaderView.trailingAnchor, constant: -30),
+            scoreLabel.centerYAnchor.constraint(equalTo: sectionHeaderView.centerYAnchor)
+            ])
+        
+        
+        
+        
+        
+        return sectionHeaderView
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
     }
     
     

@@ -12,6 +12,8 @@ import UIKit
 class ScrollableQuizViewController: UIViewController {
     
     let scrollableQuizView = ScrollableQuizView()
+    
+    
     var quiz: Quiz? = nil
     var currentQuestionIndex = 0
     var startTime : TimeInterval? = nil
@@ -21,10 +23,8 @@ class ScrollableQuizViewController: UIViewController {
             self.scrollableQuizView.answersLabel.text = "\(correctAnswers)/\(quiz!.questions.count)"
             }
         }
-        
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Play"
@@ -33,6 +33,12 @@ class ScrollableQuizViewController: UIViewController {
         scrollableQuizView.sendButton.addTarget(self, action: #selector(sendResult), for: .touchUpInside)
         scrollableQuizView.backButton.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
         scrollableQuizView.rankButton.addTarget(self, action: #selector(rankButtonTap), for: .touchUpInside)
+        
+        guard let quizNew = quiz else {
+            return
+        }
+        
+        self.scrollableQuizView.customQuizView.setup(with: quizNew)
 
         
     }
@@ -51,7 +57,6 @@ class ScrollableQuizViewController: UIViewController {
             return
         }
         
-        self.scrollableQuizView.customQuizView.setup(with: quizNew)
         self.scrollableQuizView.setupQuestions(with: quizNew)
         
         scrollableQuizView.questionViews.forEach{ questionView in
@@ -62,6 +67,7 @@ class ScrollableQuizViewController: UIViewController {
         }
         
     }
+
     
     
     
@@ -86,6 +92,7 @@ class ScrollableQuizViewController: UIViewController {
             scrollableQuizView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollableQuizView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
             ])
+
     }
     
     
@@ -144,7 +151,10 @@ class ScrollableQuizViewController: UIViewController {
                     self.scrollableQuizView.statusLabel.text = "This quiz doesn't exist"
                     return
                 default:
-                    return
+                    self.scrollableQuizView.statusLabel.alpha = 1.0
+                    self.scrollableQuizView.sendButton.setTitle("Send again", for: .normal)
+                    self.scrollableQuizView.statusLabel.text = "Something's bad, result was not sent"
+                    
                 }
             }
         }
@@ -154,7 +164,11 @@ class ScrollableQuizViewController: UIViewController {
     func rankButtonTap(_ sender: UIButton){
         let vc = RankTableViewController()
         vc.quizId = quiz?.id
-        self.navigationController?.pushViewController(vc, animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+
     }
     
     @objc
@@ -193,10 +207,9 @@ class ScrollableQuizViewController: UIViewController {
         currentQuestionIndex += 1
         
         let current = scrollableQuizView.questionsScrollView.contentOffset
-        UIView.animate(withDuration: 0.5){
+        UIView.animate(withDuration: 0.4, delay: 0.5, options:UIView.AnimationOptions.curveEaseInOut, animations: {
             self.scrollableQuizView.questionsScrollView.contentOffset = CGPoint(x: current.x+self.view.frame.width, y: 0)
-        }
-        
+        })
         
         if currentQuestionIndex == quiz?.questions.count {
             guard startTime != nil else {
@@ -206,15 +219,13 @@ class ScrollableQuizViewController: UIViewController {
             self.time = time
             let minutes : Int = Int(time) / 60
             let seconds = time - Double(minutes * 60)
-            
-            
-            UIView.animate(withDuration: 0.4){
+            UIView.animate(withDuration: 0.4, delay: 0.5, options:UIView.AnimationOptions.curveEaseInOut, animations: {
                 self.scrollableQuizView.questionsScrollView.alpha = 0.0
                 self.scrollableQuizView.answersLabel.alpha = 1.0
                 self.scrollableQuizView.sendButton.alpha = 1.0
                 self.scrollableQuizView.timeLabel.alpha = 1.0
                 self.scrollableQuizView.timeLabel.text = "\(minutes):\(round(seconds*100)/100)"
-            }
+            })
         }
     }
     

@@ -11,11 +11,17 @@ import Foundation
 
 class LoginView: UIView{
     
+    
+    let titleLabel = UILabel()
     let nameField = UITextField(frame: CGRect(x: 0, y: 0, width: 300.00, height: 30.00))
     let passwordField = UITextField(frame: CGRect(x: 0, y: 0, width: 300.00, height: 30.00))
     let loginButton = UIButton()
     let errorLabel = UILabel()
     
+    var titleConstraint : NSLayoutConstraint? = nil
+    var nameFieldConstraint : NSLayoutConstraint? = nil
+    var passwordFieldConstraint : NSLayoutConstraint? = nil
+    var loginButtonConstraint : NSLayoutConstraint? = nil
     
     
     override init(frame: CGRect) {
@@ -38,11 +44,15 @@ class LoginView: UIView{
         self.addSubview(passwordField)
         self.addSubview(loginButton)
         self.addSubview(errorLabel)
+        self.addSubview(titleLabel)
     }
     
     func styleSubviews(){
         self.backgroundColor = .white
 
+        titleLabel.text = "QuizApp"
+        titleLabel.font = UIFont(name: "Zapfino", size: 20)
+        titleLabel.textColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
         
         nameField.placeholder = "Name"
         nameField.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
@@ -77,29 +87,36 @@ class LoginView: UIView{
     
     func positionSubviews(){
         
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30)])
+        
+        nameFieldConstraint = nameField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -400)
+
         nameField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameField.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
-            nameField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            nameFieldConstraint!,
             nameField.heightAnchor.constraint(equalToConstant: 35),
             nameField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85)
             ])
         
-        
+        passwordFieldConstraint = passwordField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -400)
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             passwordField.topAnchor.constraint(equalTo: self.topAnchor, constant: 150),
-            passwordField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            passwordFieldConstraint!,
             passwordField.heightAnchor.constraint(equalToConstant: 35),
             passwordField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85)
             ])
         
         
-        
+        loginButtonConstraint =  loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -400)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 200),
-            loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            loginButtonConstraint!,
             loginButton.heightAnchor.constraint(equalToConstant: 45),
             loginButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85)
             ])
@@ -117,8 +134,6 @@ class LoginView: UIView{
         
         
     }
-    
-    
 }
 
 extension UITextField {

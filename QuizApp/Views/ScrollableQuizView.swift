@@ -23,6 +23,7 @@ class ScrollableQuizView: UIView {
     let statusLabel = UILabel()
     let backButton = UIButton()
     let rankButton = UIButton()
+    var setUp = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,41 +32,40 @@ class ScrollableQuizView: UIView {
     
     func setupQuestions(with quiz: Quiz){
         
-
-        let width = self.frame.size.width
-        var length: CGFloat = 0.0
-        
-        self.questionsScrollView.contentSize.width = CGFloat(quiz.questions.count) * width
-        
-        answersLabel.text = "0/\(quiz.questions.count)"
-        
-        
-        quiz.questions.forEach{question in
+        if setUp == false{
+            let width = self.frame.size.width
+            var length: CGFloat = 0.0
+            
+            self.questionsScrollView.contentSize.width = CGFloat(quiz.questions.count) * width
+            
+            answersLabel.text = "0/\(quiz.questions.count)"
             
             
+            quiz.questions.forEach{question in
+                let questionView = CustomQuestionView()
+                questionView.setup(with: question)
 
-            let questionView = CustomQuestionView()
-            questionView.setup(with: question)
-
-            questionViews.append(questionView)
-            
-            questionView.layer.shadowColor = UIColor.black.cgColor
-            questionView.layer.shadowOffset = CGSize(width: 5, height: 5)
-            questionView.layer.shadowRadius = 5
-            questionView.layer.shadowOpacity = 0.2
-            questionView.layer.cornerRadius = 10
-            questionView.backgroundColor = .white
+                questionViews.append(questionView)
+                
+                questionView.layer.shadowColor = UIColor.black.cgColor
+                questionView.layer.shadowOffset = CGSize(width: 5, height: 5)
+                questionView.layer.shadowRadius = 5
+                questionView.layer.shadowOpacity = 0.2
+                questionView.layer.cornerRadius = 10
+                questionView.backgroundColor = .white
 
 
-            questionsScrollView.addSubview(questionView)
-            questionView.frame = CGRect(x: 0, y: 0, width: questionsScrollView.frame.width * 0.85, height: questionsScrollView.frame.height * 0.9)
-            
-            questionView.center.x = questionsScrollView.center.x
-            questionView.transform = CGAffineTransform(translationX: length, y: 0)
+                questionsScrollView.addSubview(questionView)
+                questionView.frame = CGRect(x: 0, y: 0, width: questionsScrollView.frame.width * 0.85, height: questionsScrollView.frame.height * 0.9)
+                
+                questionView.center.x = questionsScrollView.center.x
+                questionView.transform = CGAffineTransform(translationX: length, y: 0)
 
-            length = length + width
+                length = length + width
+                setUp = true
+            }
         }
-        
+    
     }
     
     required init?(coder aDecoder: NSCoder) {

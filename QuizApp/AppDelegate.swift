@@ -25,19 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .black
         
         if let window = window {
+            let loginViewController = LoginViewController()
+            window.rootViewController = loginViewController
+            window.makeKeyAndVisible()
+
             if isUserLoggedIn() {
-                let mainVC = QuizTableViewController()
-                navigationController = UINavigationController(rootViewController: mainVC)
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            } else {
-                let mainVC = LoginViewController()
-                navigationController = UINavigationController(rootViewController: mainVC)
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
+                let mainTabBarController = MainTabBarController()
+                loginViewController.present(mainTabBarController, animated: false)
             }
         }
-        
         return true
         
     }

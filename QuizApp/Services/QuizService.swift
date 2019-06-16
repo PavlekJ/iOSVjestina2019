@@ -12,7 +12,23 @@ import UIKit
 class QuizService {
     static let shared = QuizService()
     
-    let codeAnswers = [200, 400, 401, 403, 404]
+    let codeAnswers = [200, 400, 401, 403, 444, 404]
+    
+    enum StatusCode: Int {
+        case ok = 200
+        case notFound = 404
+        
+        func description() -> String {
+            switch self {
+            case .ok:
+                return "OK"
+            case .notFound:
+                return "Not found"
+            }
+        }
+    }
+    let imageCache = NSCache<AnyObject, AnyObject>()
+
 
     func fetchRank(quizId: Int, completion: @escaping ([Rank]?) -> Void){
         
@@ -130,6 +146,12 @@ class QuizService {
     
     
     func fetchQuizImage(imageUrl: String?, completion: @escaping ((UIImage?) -> Void)){
+        
+        if let imageFromCache = imageCache.object(forKey: imageUrl as AnyObject) as? UIImage {
+            completion(imageFromCache)
+            return
+        }
+
         guard let imageUrlString = imageUrl else {
             completion(nil)
             return
@@ -138,8 +160,8 @@ class QuizService {
             
             let request = URLRequest(url: url)
             let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let data = data {
-                    let image = UIImage(data: data)
+                if let data = data, let image = UIImage(data: data) {
+                    self.imageCache.setObject(image, forKey: imageUrl as AnyObject)
                     completion(image)
                 } else {
                     completion(nil)

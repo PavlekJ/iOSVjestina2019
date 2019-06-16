@@ -33,6 +33,12 @@
 		77C18C1A225BC39200B72CF0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C18C19225BC39200B72CF0 /* LoginView.swift */; };
 		77C18C1C225BC65800B72CF0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C18C1B225BC65800B72CF0 /* LoginViewController.swift */; };
 		77CC1F6B225F7EBA00959888 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CC1F6A225F7EBA00959888 /* LoginService.swift */; };
+		77F64F0F22B3D6C4005405A5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F64F0E22B3D6C4005405A5 /* MainTabBarController.swift */; };
+		77F64F1122B3DAE7005405A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F64F1022B3DAE7005405A5 /* SettingsView.swift */; };
+		77F64F1322B3DCDD005405A5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F64F1222B3DCDD005405A5 /* SettingsViewController.swift */; };
+		77F64F1A22B6D036005405A5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F64F1922B6D036005405A5 /* SearchViewController.swift */; };
+		77F64F1C22B6D09D005405A5 /* CustomSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F64F1B22B6D09D005405A5 /* CustomSearchTextField.swift */; };
+		77F64F1E22B6D468005405A5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F64F1D22B6D468005405A5 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +91,12 @@
 		77C18C19225BC39200B72CF0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		77C18C1B225BC65800B72CF0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		77CC1F6A225F7EBA00959888 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		77F64F0E22B3D6C4005405A5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		77F64F1022B3DAE7005405A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		77F64F1222B3DCDD005405A5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		77F64F1922B6D036005405A5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		77F64F1B22B6D09D005405A5 /* CustomSearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchTextField.swift; sourceTree = "<group>"; };
+		77F64F1D22B6D468005405A5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +195,9 @@
 			isa = PBXGroup;
 			children = (
 				7747D0A022540DCB00258838 /* QuizView.swift */,
+				77F64F1D22B6D468005405A5 /* SearchView.swift */,
+				77F64F1B22B6D09D005405A5 /* CustomSearchTextField.swift */,
+				77F64F1022B3DAE7005405A5 /* SettingsView.swift */,
 				7716013322808C0100617FDF /* ScrollableQuizView.swift */,
 				77160129227F6BA700617FDF /* QuizTableViewCell.swift */,
 				77C18C19225BC39200B72CF0 /* LoginView.swift */,
@@ -197,10 +212,13 @@
 			isa = PBXGroup;
 			children = (
 				7747D09E22540C1E00258838 /* QuizViewController.swift */,
+				77F64F1922B6D036005405A5 /* SearchViewController.swift */,
+				77F64F0E22B3D6C4005405A5 /* MainTabBarController.swift */,
 				7766EC1F228E17B100254DC0 /* RankTableViewController.swift */,
 				7716013122805A4700617FDF /* ScrollableQuizViewController.swift */,
 				7716012F227F71F600617FDF /* QuizTableViewController.swift */,
 				77C18C1B225BC65800B72CF0 /* LoginViewController.swift */,
+				77F64F1222B3DCDD005405A5 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -346,7 +364,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7747D09F22540C1E00258838 /* QuizViewController.swift in Sources */,
+				77F64F1122B3DAE7005405A5 /* SettingsView.swift in Sources */,
 				7747D0A92254B7FD00258838 /* Quiz.swift in Sources */,
+				77F64F0F22B3D6C4005405A5 /* MainTabBarController.swift in Sources */,
 				7766EC1E228DEE3300254DC0 /* Result.swift in Sources */,
 				7716012C227F6DBF00617FDF /* DynamicViewType.swift in Sources */,
 				7747D0AF2255048900258838 /* Quizzes.swift in Sources */,
@@ -355,17 +375,21 @@
 				7747D0A7225429B000258838 /* QuizService.swift in Sources */,
 				775859072255437B0062B380 /* CustomQuestionView.swift in Sources */,
 				77160130227F71F600617FDF /* QuizTableViewController.swift in Sources */,
+				77F64F1C22B6D09D005405A5 /* CustomSearchTextField.swift in Sources */,
 				7716013222805A4700617FDF /* ScrollableQuizViewController.swift in Sources */,
 				77CC1F6B225F7EBA00959888 /* LoginService.swift in Sources */,
 				7766EC22228E25A100254DC0 /* Rank.swift in Sources */,
+				77F64F1A22B6D036005405A5 /* SearchViewController.swift in Sources */,
 				7716012A227F6BA700617FDF /* QuizTableViewCell.swift in Sources */,
 				7747D0B12255124100258838 /* CustomQuizView.swift in Sources */,
+				77F64F1E22B6D468005405A5 /* SearchView.swift in Sources */,
 				77C18C1A225BC39200B72CF0 /* LoginView.swift in Sources */,
 				7766EC20228E17B200254DC0 /* RankTableViewController.swift in Sources */,
 				7716013422808C0100617FDF /* ScrollableQuizView.swift in Sources */,
 				7747D0A122540DCB00258838 /* QuizView.swift in Sources */,
 				771601262274BF9500617FDF /* Token.swift in Sources */,
 				77C18C1C225BC65800B72CF0 /* LoginViewController.swift in Sources */,
+				77F64F1322B3DCDD005405A5 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

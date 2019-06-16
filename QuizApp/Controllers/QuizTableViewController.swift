@@ -23,12 +23,7 @@ class QuizTableViewController: UIViewController {
         
         self.title = "Quizzes"
         loadQuizzes()
-        sleep(2)
         setupView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     func loadQuizzes(){
@@ -37,50 +32,22 @@ class QuizTableViewController: UIViewController {
                 return
             }
             self.quizzes = quizzes.quizzes
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+
+            }
         }
     }
     
     
     func setupView() {
-        
-        
         self.view.backgroundColor = .white
         self.view.addSubview(tableView)
         
         self.navigationItem.hidesBackButton = true
         
-        
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width:self.view.frame.width , height: 80))
-        let logoutButton = UIButton()
-        
-        logoutButton.backgroundColor = UIColor(red:0.81, green:0.44, blue:0.66, alpha:1.0)
-        logoutButton.setTitleColor(.white, for: .normal)
-        logoutButton.setTitle("Log Out", for: .normal)
-        logoutButton.layer.shadowColor = UIColor.black.cgColor
-        logoutButton.layer.shadowOffset = CGSize(width: 5, height: 5)
-        logoutButton.layer.shadowRadius = 5
-        logoutButton.layer.shadowOpacity = 0.2
-        logoutButton.layer.cornerRadius = 10
-        logoutButton.isEnabled = true
-        
-        logoutButton.addTarget(self, action: #selector(logoutButtonTap), for: .touchUpInside)
-        
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        footerView.addSubview(logoutButton)
-        
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            logoutButton.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
-            logoutButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            logoutButton.widthAnchor.constraint(equalTo: footerView.widthAnchor, multiplier: 0.85),
-            logoutButton.heightAnchor.constraint(equalToConstant: 45)])
-        
-        
-        tableView.tableFooterView = footerView
         
         let leadingTableView = tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         leadingTableView.priority = UILayoutPriority.defaultLow
@@ -103,10 +70,7 @@ class QuizTableViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         
-        let cancelAction = UIAlertAction(title: "Log out", style: .default, handler: logout)
-        let logoutAction = UIAlertAction(title: "Cancel", style: .cancel)
-        logoutController.addAction(logoutAction)
-        logoutController.addAction(cancelAction)
+        
     }
     
     @objc
@@ -121,9 +85,8 @@ class QuizTableViewController: UIViewController {
                 let loginViewController = LoginViewController()
                 self.navigationController?.viewControllers = [loginViewController] + self.navigationController!.viewControllers
             }
-            self.navigationController?.popViewController(animated: true)
+            self.tabBarController?.navigationController?.popViewController(animated: true)
         }
-        
         UserDefaults.standard.set(nil, forKey: "token")
     }
     
@@ -169,7 +132,7 @@ extension QuizTableViewController: UITableViewDataSource {
         }
         
         return cell
-
+        
     }
     
     
@@ -194,9 +157,8 @@ extension QuizTableViewController: UITableViewDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -204,7 +166,7 @@ extension QuizTableViewController: UITableViewDelegate {
             return quiz.category
         }
         let uniqueCategories = Array(Set(categories)).sorted()
-
+        
         let sectionHeaderView = UIView()
         sectionHeaderView.alpha = 1
         let categoryLabel = UILabel()
@@ -218,12 +180,7 @@ extension QuizTableViewController: UITableViewDelegate {
             categoryLabel.centerYAnchor.constraint(equalTo: sectionHeaderView.centerYAnchor)
             ])
         
-        
-
-        
-        
         return sectionHeaderView
-        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -242,23 +199,23 @@ extension QuizTableViewController: UITableViewDelegate {
     
     
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footerView = UIView(frame: CGRect(x: 100, y:0, width: self.view.frame.width, height: 60))
-//
+    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    //        let footerView = UIView(frame: CGRect(x: 100, y:0, width: self.view.frame.width, height: 60))
+    //
     
-//
-//
-//        footerView.addSubview(logoutButton)
-//
-//        let widthConstraint = NSLayoutConstraint(item: logoutButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: tableView.frame.width)
-//        let heightConstraint = NSLayoutConstraint(item: logoutButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 45)
-//
-//
-//        logoutButton.addConstraints([widthConstraint, heightConstraint])
-//        return footerView
-//    }
+    //
+    //
+    //        footerView.addSubview(logoutButton)
+    //
+    //        let widthConstraint = NSLayoutConstraint(item: logoutButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: tableView.frame.width)
+    //        let heightConstraint = NSLayoutConstraint(item: logoutButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 45)
+    //
+    //
+    //        logoutButton.addConstraints([widthConstraint, heightConstraint])
+    //        return footerView
+    //    }
     
-
+    
 }
 
 extension String{
